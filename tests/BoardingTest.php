@@ -50,20 +50,18 @@ class BoardingTest extends TestCase {
         $bus->boardQueue($queue);
     }
 
-    /*
     public function testResheduleOnBoardingQueue() {
         $bus = new Bus(4, 1);
 
         try {
             $queue = [new Passenger(), new Passenger(), new Passenger(),new Passenger(), new Passenger()];
             $bus->boardQueue($queue);
-        } catch (BusFullException $e) {
-            $this->assertInternalType('array', $e->passengersToReshedule());
-            $this->assertEquals(2, count($e->passengersToReshedule()));
-            $this->assertContainsOnlyInstancesOf(Passenger::class, $e->passengersToReshedule());
+        } catch (PartialBoardingException $e) {
+            $this->assertInternalType('array', $e->getPassengersToReschedule());
+            $this->assertEquals(2, count($e->getPassengersToReschedule()));
+            $this->assertContainsOnlyInstancesOf(Passenger::class, $e->getPassengersToReschedule());
         }
 
     }
-    */
 
 }

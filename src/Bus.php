@@ -24,17 +24,17 @@ class Bus {
     }
 
     public function boardQueue(array $passengers) {
-        $passengers_for_reshedule = [];
+        $passengers_for_reschedule = [];
         foreach ($passengers as $passenger) {
             try {
                 $this->board($passenger);
             } catch (BusFullException $e) {
-                $passengers_for_reshedule[] = $passenger;
+                $passengers_for_reschedule[] = $passenger;
             }
         }
 
-        if ($passengers_for_reshedule) {
-            throw new PartialBoardingException();
+        if ($passengers_for_reschedule) {
+            throw new PartialBoardingException('',0,NULL, $passengers_for_reschedule);
         }
     }
 
