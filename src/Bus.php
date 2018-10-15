@@ -25,18 +25,17 @@ class Bus {
     }
 
     public function boardQueue(array $passengers) {
-        $passengers_for_reschedule = [];
+        $result = new BusBoardingResult();
         foreach ($passengers as $passenger) {
             try {
                 $this->board($passenger);
+                $result->addPassengerSuccessfulBoarded($passenger);
             } catch (BusFullException $e) {
-                $passengers_for_reschedule[] = $passenger;
+                $result->addPassengerNotBoarded($passenger);
             }
         }
 
-        if ($passengers_for_reschedule) {
-            throw new PartialBoardingException('',0,NULL, $passengers_for_reschedule);
-        }
+        return $result;
     }
 
     public function isEmpty(): bool {

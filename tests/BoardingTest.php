@@ -34,6 +34,13 @@ class BoardingTest extends TestCase {
         $bus->board(new Passenger());
     }
 
+    public function testValidBoardingMessage() {
+        $bus = new Bus(5, 1);
+        $queue = [new Passenger(), new Passenger(), new Passenger()];
+        $boarding_result = $bus->boardQueue($queue);
+        $this->assertInstanceOf(BusBoardingResult::class, $boarding_result);
+    }
+
     public function testSuccessfulBoardingQueue() {
         $bus = new Bus(5, 1);
         $queue = [new Passenger(), new Passenger(), new Passenger()];
@@ -46,22 +53,18 @@ class BoardingTest extends TestCase {
         $bus = new Bus(5, 1);
         $queue = [new Passenger(), new Passenger(), new Passenger(),new Passenger(), new Passenger()];
 
-        $this->expectException(PartialBoardingException::class);
-        $bus->boardQueue($queue);
+        $boarding_result = $bus->boardQueue($queue);
+        $this->assertTrue($boarding_result->hasUnsuccessfulBoardings());
     }
 
-    public function testResheduleOnBoardingQueue() {
+    public function testRescheduleOnBoardingQueue() {
         $bus = new Bus(4, 1);
+        $queue = [new Passenger(), new Passenger(), new Passenger(),new Passenger(), new Passenger()];
 
-        try {
-            $queue = [new Passenger(), new Passenger(), new Passenger(),new Passenger(), new Passenger()];
-            $bus->boardQueue($queue);
-        } catch (PartialBoardingException $e) {
-            $this->assertInternalType('array', $e->getPassengersToReschedule());
-            $this->assertEquals(2, count($e->getPassengersToReschedule()));
-            $this->assertContainsOnlyInstancesOf(Passenger::class, $e->getPassengersToReschedule());
-        }
-
+        $boarding_result = $bus->boardQueue($queue);
+        $this->assertInternalType('array', $boarding_result->getPassengersNotBoarded());
+        $this->assertEquals(2, count($boarding_result->getPassengersNotBoarded()));
+        $this->assertContainsOnlyInstancesOf(Passenger::class, $boarding_result->getPassengersNotBoarded());
     }
 
 }
