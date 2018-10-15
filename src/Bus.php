@@ -20,6 +20,7 @@ class Bus {
         if ($this->isFull()) {
             throw new BusFullException();
         }
+        $passenger->seat();
         $this->taken_seats++;
     }
 

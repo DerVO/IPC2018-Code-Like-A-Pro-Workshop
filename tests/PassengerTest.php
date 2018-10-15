@@ -11,4 +11,12 @@ class PassengerTest extends TestCase
         $this->assertFalse($passenger->isSeated());
     }
 
+    public function testPassengerInBusIsSeated() {
+        $bus = new Bus(5);
+        $passenger = new Passenger();
+        $bus->board($passenger);
+
+        $this->assertTrue($passenger->isSeated());
+    }
+
 }
