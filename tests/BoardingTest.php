@@ -34,4 +34,12 @@ class BoardingTest extends TestCase {
         $bus->board(new Passenger());
     }
 
+    public function testSuccessfulBoardingQueue() {
+        $bus = new Bus(5, 1);
+        $queue = [new Passenger(), new Passenger(), new Passenger()];
+        $bus->boardQueue($queue);
+
+        $this->assertFalse($bus->isFull());
+    }
+
 }

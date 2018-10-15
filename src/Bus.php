@@ -23,6 +23,12 @@ class Bus {
         $this->taken_seats++;
     }
 
+    public function boardQueue(array $passengers) {
+        foreach ($passengers as $passenger) {
+            $this->board($passenger);
+        }
+    }
+
     public function isEmpty(): bool {
         return $this->taken_seats === 0;
     }
