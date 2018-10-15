@@ -11,7 +11,6 @@ spl_autoload_register(
                 'busflix\\busboardingresult' => '/BusBoardingResult.php',
                 'busflix\\busfullexception' => '/BusFullException.php',
                 'busflix\\failedexception' => '/FailedException.php',
-                'busflix\\partialboardingexception' => '/PartialBoardingException.php',
                 'busflix\\passenger' => '/Passenger.php',
                 'busflix\\seat' => '/Seat.php'
             );
