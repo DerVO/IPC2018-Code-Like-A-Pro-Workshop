@@ -8,6 +8,7 @@ class BusTest extends TestCase
 
     public function testFailToCreateBusWithoutCapacity() {
         $this->expectException(\ArgumentCountError::class);
+        /** @noinspection PhpParamsInspection */
         new Bus();
     }
 
