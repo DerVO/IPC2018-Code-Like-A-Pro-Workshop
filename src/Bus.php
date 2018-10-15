@@ -9,6 +9,10 @@ class Bus {
     /** @var bool  */
     private $empty = true;
 
+    public function __construct(int $capacity = 2) {
+        $this->capacity = $capacity;
+    }
+
     public function isEmpty(): bool {
         return $this->empty;
     }
@@ -23,5 +27,9 @@ class Bus {
 
     public function isFull(): bool {
         return $this->capacity <= 0;
+    }
+
+    public function hasCapacity() {
+        return $this->capacity;
     }
 }
