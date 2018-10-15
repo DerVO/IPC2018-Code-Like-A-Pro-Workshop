@@ -6,19 +6,19 @@ use PHPUnit\Framework\TestCase;
 class BoardingTest extends TestCase {
 
     public function testBusIsInitiallyEmpty() {
-        $bus = new Bus();
+        $bus = new Bus(5);
         $this->assertTrue($bus->isEmpty());
     }
 
     public function testBusIsNotEmptyOncePassengerHasBoarded() {
-        $bus = new Bus();
+        $bus = new Bus(5);
         $bus->board(new Passenger());
 
         $this->assertFalse($bus->isEmpty());
     }
 
     public function testBusIsFullOnceItReachedCapacity() {
-        $bus = new Bus();
+        $bus = new Bus(2);
         $bus->board(new Passenger());
         $bus->board(new Passenger());
 
@@ -26,7 +26,7 @@ class BoardingTest extends TestCase {
     }
 
     public function testPassengerCannotBoardFullBus() {
-        $bus = new Bus();
+        $bus = new Bus(2);
         $bus->board(new Passenger());
         $bus->board(new Passenger());
 

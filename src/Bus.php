@@ -4,12 +4,12 @@ namespace BusFlix;
 class Bus {
 
     /** @var int  */
-    private $capacity = 2;
+    private $capacity = 0;
 
     /** @var bool  */
     private $empty = true;
 
-    public function __construct(int $capacity = 2) {
+    public function __construct(int $capacity) {
         $this->capacity = $capacity;
     }
 
