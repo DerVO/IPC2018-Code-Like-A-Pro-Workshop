@@ -34,7 +34,7 @@ class Bus {
         return $this->capacity <= 0;
     }
 
-    public function hasCapacity() {
+    public function totalCapacity() {
         return $this->capacity;
     }
 
