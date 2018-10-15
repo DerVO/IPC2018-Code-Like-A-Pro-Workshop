@@ -5,9 +5,7 @@ class Bus {
 
     /** @var int  */
     private $capacity = 0;
-
-    /** @var bool  */
-    private $empty = true;
+    private $taken_seats = 0;
 
     public function __construct(int $capacity, int $preOccupiedSeats = 0) {
         $this->capacity = $capacity;
@@ -18,20 +16,19 @@ class Bus {
         }
     }
 
-    public function isEmpty(): bool {
-        return $this->empty;
-    }
-
     public function board(Passenger $passenger) {
         if ($this->isFull()) {
             throw new BusFullException();
         }
-        $this->empty = false;
-        $this->capacity--;
+        $this->taken_seats++;
+    }
+
+    public function isEmpty(): bool {
+        return $this->taken_seats === 0;
     }
 
     public function isFull(): bool {
-        return $this->capacity <= 0;
+        return $this->availableCapacity() <= 0;
     }
 
     public function totalCapacity() {
@@ -39,6 +36,6 @@ class Bus {
     }
 
     public function availableCapacity() {
-        return 30;
+        return $this->capacity - $this->taken_seats;
     }
 }

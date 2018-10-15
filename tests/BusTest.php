@@ -20,4 +20,9 @@ class BusTest extends TestCase
         $bus = new Bus(50, 20);
         $this->assertSame(30, $bus->availableCapacity());
     }
+
+    public function testTotalCapacityOnPreBoardedBus() {
+        $bus = new Bus(50, 20);
+        $this->assertSame(50, $bus->totalCapacity());
+    }
 }
