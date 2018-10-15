@@ -6,7 +6,7 @@ use PHPUnit\Framework\TestCase;
 class BusTest extends TestCase
 {
 
-    public function testCreateBusWithoutCapacity() {
+    public function testFailToCreateBusWithoutCapacity() {
         $this->expectException(\ArgumentCountError::class);
         new Bus();
     }
