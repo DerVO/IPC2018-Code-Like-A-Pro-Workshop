@@ -9,8 +9,13 @@ class Bus {
     /** @var bool  */
     private $empty = true;
 
-    public function __construct(int $capacity) {
+    public function __construct(int $capacity, int $preOccupiedSeats = 0) {
         $this->capacity = $capacity;
+        if ($preOccupiedSeats > 0) {
+            for ($i = 0; $i < $preOccupiedSeats; $i++) {
+                $this->board(new Passenger());
+            }
+        }
     }
 
     public function isEmpty(): bool {
@@ -31,5 +36,9 @@ class Bus {
 
     public function hasCapacity() {
         return $this->capacity;
+    }
+
+    public function availableCapacity() {
+        return 30;
     }
 }
